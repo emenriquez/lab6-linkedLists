@@ -1,15 +1,33 @@
 #include "LLStack.h"
 
 //constructor : initiazlize the head and tail field from LLStack class 
+// the stack should start with no items 
+// the head and tail should both be initialized as null pointers
 LLStack::LLStack()
 {
-	head = nullptr;
-	tail = nullptr;
-	count = 0;
+
 }
 
 /*
-- Create the new Node and initialize the fields of class Node (info and next)
+define the top() method, which will return the data at the top of the stack
+(remember the "top" of the stack is the newest element)
+If stack is empty, return "";
+*/
+string LLStack::top()
+{
+	return "fixthis";
+}
+
+/*
+define the size() method, which will return the number of nodes in the stack
+*/
+int LLStack::size()
+{
+	return -1;
+}
+
+/*
+- Create the new Node and initialize the fields of class Node (data and next)
 - update the head, tail and count accordingly
 
 Hint: To update head and tail properly, You have to consider two scenarios:
@@ -18,9 +36,7 @@ Hint: To update head and tail properly, You have to consider two scenarios:
 */
 void LLStack::push(string s)
 {
-	// TO DO
-	
-	
+
 }
 
 /*
@@ -32,24 +48,5 @@ Hint: To update head and tail properly, You should consider two different scenar
 */
 void LLStack::pop()
 {
-	// TO DO
-	
-}
 
-/*
-What is always referring to the top element?
-If stack is empty, return "";
-*/
-string LLStack::top()
-{
-	// TO DO
-	
-}
-
-/*
-What keep track of number of elements in the stack?
-*/
-int LLStack::size()
-{
-	// TO DO
 }

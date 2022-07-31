@@ -5,156 +5,70 @@
 #include <iostream>
 using namespace std;
 
-#include "Lab5.cpp"
+#include "LLStack.cpp"
 
-void createHistory(string inAddress) {
-    BrowserHistory history(inAddress);
+LLStack test;
+
+TEST_CASE("LLStack") {
+    CHECK_NOTHROW(test);
 }
 
-TEST_CASE("Stack") {
-    Stack tacoStack;
+TEST_CASE("top") {
+    CHECK(test.top() == "");
+}
 
-    CHECK_NOTHROW(tacoStack.empty());
-};
+TEST_CASE("size") {
+    CHECK(test.size() == 0);
+}
 
 TEST_CASE("push") {
-    Stack tacoStack;
-    CHECK(tacoStack.empty());
+    CHECK_NOTHROW(test.push("hello"));
+    CHECK(test.top() == "hello");
+    CHECK(test.size() == 1);
 
-	CHECK_NOTHROW(tacoStack.push("bacon"));
-	tacoStack.push("chorizo");
-	tacoStack.push("huevo");
-    CHECK(tacoStack.getNumItems() == 3);
-	tacoStack.push("foqua");
-	tacoStack.push("queue");
-	tacoStack.push("stack");
-	tacoStack.push("brisket");
-    CHECK(tacoStack.getNumItems() == 7);
-}
+    // Add more items
+    test.push("here");
+    test.push("goes");
+    test.push("test");
+    test.push("another");
 
-TEST_CASE("getNumItems") {
-    Stack tacoStack;
-    CHECK(tacoStack.getNumItems() == 0);
+    // check size
+    CHECK(test.size() == 5);
 }
 
 TEST_CASE("pop") {
-    Stack tacoStack;
-    CHECK(tacoStack.empty());
+    LLStack test2;
+    // quick test
+    CHECK_NOTHROW(test2.pop());
 
-	CHECK_NOTHROW(tacoStack.push("bacon"));
-	tacoStack.push("chorizo");
-	tacoStack.push("huevo");
-    CHECK(tacoStack.getNumItems() == 3);
-	tacoStack.push("foqua");
-	tacoStack.push("queue");
-	tacoStack.push("stack");
-	tacoStack.push("brisket");
-    CHECK(tacoStack.getNumItems() == 7);
-    CHECK_FALSE(tacoStack.empty());
+    // One item
+    test2.push("hello");
+    test2.pop();
+    CHECK(test2.size() == 0);
 
-    CHECK(tacoStack.pop() == "brisket");
-    CHECK(tacoStack.pop() == "stack");
-    CHECK(tacoStack.pop() == "queue");
-    
-    // empty the stack
-    tacoStack.pop();
-    tacoStack.pop();
-    tacoStack.pop();
-    tacoStack.pop();
-    CHECK(tacoStack.getNumItems() == 0);
-    CHECK(tacoStack.empty());
-}
+    // Add more items
+    test2.push("here");
+    test2.push("goes");
+    test2.push("test2");
+    test2.push("another");
 
-TEST_CASE("BrowserHistory") {
-    CHECK_NOTHROW(createHistory("aol.com"));
-}
+    CHECK(test2.size() == 4);
+    CHECK(test2.top() == "another");
+    test2.pop();
+    CHECK(test2.size() == 3);
+    CHECK(test2.top() == "test2");
+    test2.pop();
+    CHECK(test2.size() == 2);
+    CHECK(test2.top() == "goes");
+    test2.pop();
+    CHECK(test2.size() == 1);
+    CHECK(test2.top() == "here");
+    test2.pop();
+    CHECK(test2.size() == 0);
+    CHECK(test2.top() == "");
 
-TEST_CASE("getCurrentPage") {
-    BrowserHistory history("aol.com");
-    BrowserHistory history2("gooogle.com");
-
-    CHECK(history.getCurrentPage() == "aol.com");
-    CHECK(history2.getCurrentPage() == "gooogle.com");
-}
-
-TEST_CASE("goToPage") {
-    BrowserHistory history("aol.com");
-    BrowserHistory history2("gooogle.com");
-
-    history.goToPage("news.com");
-    history2.goToPage("movies.com");
-    CHECK(history.getCurrentPage() == "news.com");
-    CHECK(history2.getCurrentPage() == "movies.com");
-}
-
-TEST_CASE("goBack") {
-    BrowserHistory history("aol.com");
-    BrowserHistory history2("gooogle.com");
-
-    history.goToPage("news.com");
-    history2.goToPage("movies.com");
-    history.goToPage("netflix.com");
-    history2.goToPage("utrgv.edu");
-
-    history.goBack();
-    history2.goBack();
-
-    CHECK(history.getCurrentPage() == "news.com");
-    CHECK(history2.getCurrentPage() == "movies.com");
-
-    history.goBack();
-    history2.goBack();
-
-    CHECK(history.getCurrentPage() == "aol.com");
-    CHECK(history2.getCurrentPage() == "gooogle.com");
-
-    CHECK_NOTHROW(history.goBack());
-    CHECK_NOTHROW(history.goBack());
-    CHECK_NOTHROW(history.goBack());
-    CHECK_NOTHROW(history.goBack());
-
-
-}
-
-TEST_CASE("canGoBack") {
-    BrowserHistory history("aol.com");
-    BrowserHistory history2("gooogle.com");
-
-    CHECK_FALSE(history.canGoBack());
-    CHECK_FALSE(history2.canGoBack());
-
-    history.goToPage("news.com");
-    history2.goToPage("movies.com");
-
-    CHECK(history.canGoBack());
-    CHECK(history2.canGoBack());
-
-    history.goBack();
-    history2.goBack();
-
-    CHECK_FALSE(history.canGoBack());
-    CHECK_FALSE(history2.canGoBack());
-}
-
-TEST_CASE("historyLength") {
-    BrowserHistory history("aol.com");
-    BrowserHistory history2("gooogle.com");
-
-    CHECK(history.historyLength() == 0);
-    CHECK(history2.historyLength() == 0);
-
-    history.goToPage("news.com");
-    history2.goToPage("movies.com");
-    history.goToPage("netflix.com");
-    history2.goToPage("utrgv.edu");
-    history2.goToPage("utrgv.edu");
-
-    CHECK(history.historyLength() == 2);
-    CHECK(history2.historyLength() == 3);
-
-    history.goBack();
-    history2.goBack();
-
-    CHECK(history.historyLength() == 1);
-    CHECK(history2.historyLength() == 2);
+    // Should not fail when trying to pop additional items
+    CHECK_NOTHROW(test2.pop());
+    CHECK_NOTHROW(test2.pop());
+    CHECK_NOTHROW(test2.pop());
 }

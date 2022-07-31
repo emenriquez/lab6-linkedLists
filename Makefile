@@ -1,6 +1,6 @@
 all: a.out
 
-a.out: tests.cpp Lab5.cpp
+a.out: tests.cpp LLStack.cpp LLStack.h
 	g++ -std=c++11 tests.cpp
 
 test: a.out
