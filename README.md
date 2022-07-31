@@ -1,5 +1,5 @@
-# Lab 5 - Simple Browser History (pointers)
-1. Complete the exercises in Lab5.cpp (function definitions - no main() function should be written).
+# Lab 6 - Linked List Stack
+1. Complete the exercises in Lab6.cpp (class/function definitions - no main() function should be written).
 
 
 ### Run command
