@@ -2,15 +2,13 @@
 
 using namespace std;
 
-class Node          // Yes, you can have a class inside another class, use this class for your linked list implementatin of stack 
-{
+class Node {
 	public:
 		string data;
 		Node* next;
 };
 
-class LLStack
-{
+class LLStack {
 	public:	
 		LLStack();           // the constructor
 		string top();        // return the top string of stack
