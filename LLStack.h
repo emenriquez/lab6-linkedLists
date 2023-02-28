@@ -6,6 +6,7 @@ class Node {
 	public:
 		string data;
 		Node* next;
+		Node(string s);
 };
 
 class LLStack {
