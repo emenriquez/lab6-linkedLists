@@ -1,6 +1,6 @@
 # Lab 6 - Linked List Stack
 
-**Updated Lab Structure**: This lab has been modernized to use a simple `main.cpp` with embedded unit tests instead of external testing frameworks. This makes it easier to run on any platform without complex setup!
+**Updated Lab Structure**: This lab has been modernized to use a simple `main.cpp` with embedded unit tests instead of external testing frameworks.
 
 Complete the exercises in LLStack.cpp (class/function definitions - no main() function should be written).
 
