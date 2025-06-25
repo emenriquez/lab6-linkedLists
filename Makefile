@@ -1,10 +1,15 @@
-all: a.out
+# Simple Makefile for Linked List Stack Lab
+# Students can use this or just run: g++ -o test main.cpp && ./test
 
-a.out: tests.cpp LLStack.cpp LLStack.h
-	g++ -std=c++11 tests.cpp
+all: test
 
-test: a.out
-	./a.out "$(try)"
+test: main.cpp LLStack.cpp LLStack.h
+	g++ -std=c++11 -o test main.cpp
+
+run: test
+	./test
 
 clean:
-	rm a.out
+	rm -f test
+
+.PHONY: run clean

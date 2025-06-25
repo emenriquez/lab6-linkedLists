@@ -1,4 +1,7 @@
 # Lab 6 - Linked List Stack
+
+**Updated Lab Structure**: This lab has been modernized to use a simple `main.cpp` with embedded unit tests instead of external testing frameworks. This makes it easier to run on any platform without complex setup!
+
 Complete the exercises in LLStack.cpp (class/function definitions - no main() function should be written).
 
 In this lab you’ll create a Stack using linked lists. To do this the class LLStack has declared some useful variables, pointers, functions, and the class Node.
@@ -20,11 +23,40 @@ In this lab you’ll create a Stack using linked lists. To do this the class LLS
 2.	Node* next: This pointer will store the address to the next Node in the Linked List.
 
 
-## Run command
-`make test`
+## How to Run Tests
 
-In order to test functions individually, you can use the following:
-`make test try={functionName}`
+This lab now uses a simple testing system that works on any platform! Just compile and run:
 
-For example, to try a function `printArray()` function, you can run:
-`make test try=printArray` *(No spaces)*
+### Option 1: Direct compilation (works everywhere)
+```bash
+g++ -o test main.cpp
+./test
+```
+
+### Option 2: Using the provided script
+```bash
+./run_tests.sh
+```
+
+### Option 3: Using make
+```bash
+make run
+```
+
+### What the Tests Do:
+- **Constructor Tests**: Verify your stack starts empty
+- **Push Tests**: Check single and multiple item pushes
+- **Pop Tests**: Test popping from empty, single-item, and multi-item stacks
+- **Mixed Operations**: Combine push and pop operations
+- **Stress Tests**: Test with many operations to ensure robustness
+
+### Understanding the Output:
+- ✓ PASS: Your implementation works correctly for this test
+- ✗ FAIL: Something needs to be fixed in your implementation
+- Final summary shows total progress
+
+### Tips:
+- Start by implementing the constructor, then `size()`, then `push()`, then `top()`, and finally `pop()`
+- Run tests frequently to check your progress
+- Each test failure gives you a hint about what to fix
+- The tests are designed to help you debug step by step
